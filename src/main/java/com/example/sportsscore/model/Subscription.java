@@ -18,14 +18,18 @@ public class Subscription {
     @JoinColumn(name = "typeId")
     private SubscriptionType subscriptionType;
 
+    private String detailValue;
+
+
     // Default constructor
     public Subscription() {}
 
     // Parameterized constructor
-    public Subscription(int subscriptionId, User subscriber, SubscriptionType subscriptionType) {
+    public Subscription(int subscriptionId, User subscriber, SubscriptionType subscriptionType, String detailValue) {
         this.subscriptionId = subscriptionId;
         this.subscriber = subscriber;
         this.subscriptionType = subscriptionType;
+        this.detailValue = detailValue;
     }
 
     // Getters and setters
@@ -51,5 +55,13 @@ public class Subscription {
 
     public void setSubscriptionType(SubscriptionType subscriptionType) {
         this.subscriptionType = subscriptionType;
+    }
+
+    public String getDetailValue() {
+        return detailValue;
+    }
+
+    public void setDetailValue(String detailValue) {
+        this.detailValue = detailValue;
     }
 }

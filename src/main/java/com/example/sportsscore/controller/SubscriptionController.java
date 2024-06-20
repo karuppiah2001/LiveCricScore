@@ -1,7 +1,6 @@
 package com.example.sportsscore.controller;
 
 import com.example.sportsscore.model.Subscription;
-import com.example.sportsscore.model.SubscriptionDetail;
 import com.example.sportsscore.service.SubscriptionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,12 +14,12 @@ public class SubscriptionController {
     private SubscriptionService subscriptionService;
 
     @PostMapping("/subscribe")
-    public ResponseEntity<SubscriptionDetail> subscribe(
+    public ResponseEntity<Subscription> subscribe(
             @RequestParam int userId,
             @RequestParam int typeId,
             @RequestParam String detailValue) {
-        SubscriptionDetail subscriptionDetail = subscriptionService.createSubscription(userId, typeId, detailValue);
-        return ResponseEntity.ok(subscriptionDetail);
+        Subscription subscription = subscriptionService.createSubscription(userId, typeId, detailValue);
+        return ResponseEntity.ok(subscription);
     }
 }
 

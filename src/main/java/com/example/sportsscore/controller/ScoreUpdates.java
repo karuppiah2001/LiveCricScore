@@ -20,7 +20,5 @@ public class ScoreUpdates {
        return matchService.getTodayMatchList();
     }
 
-    @
-
 
 }
