@@ -1,6 +1,8 @@
 package com.example.sportsscore.controller;
 
 import com.example.sportsscore.model.MatchSchedule;
+import com.example.sportsscore.model.Subscription;
+import com.example.sportsscore.model.SubscriptionCard;
 import com.example.sportsscore.service.MatchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,5 +22,9 @@ public class ScoreUpdates {
        return matchService.getTodayMatchList();
     }
 
+    @GetMapping("subscriptionCards")
+    public List<SubscriptionCard> getSubscriptionCard(){
+        return matchService.getMatchAndSubscriber();
+    }
 
 }

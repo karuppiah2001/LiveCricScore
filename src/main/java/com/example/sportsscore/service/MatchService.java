@@ -1,7 +1,11 @@
 package com.example.sportsscore.service;
 
+import com.example.sportsscore.converter.SubscriptionCardConverter;
 import com.example.sportsscore.model.MatchSchedule;
+import com.example.sportsscore.model.Subscription;
+import com.example.sportsscore.model.SubscriptionCard;
 import com.example.sportsscore.repository.MatchScheduleRepo;
+import com.example.sportsscore.repository.SubscriptionRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -20,6 +24,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class MatchService {
@@ -28,7 +33,14 @@ public class MatchService {
     private HttpRequest.Builder requestBuilder;
 
     @Autowired
+    private SubscriptionRepository subscriptionRepository;
+
+    @Autowired
     MatchScheduleRepo matchScheduleRepo;
+
+    @Autowired
+    SubscriptionCardConverter subscriptionCardConverter;
+
     public List<MatchSchedule> getTodayMatchList(){
 
         HttpResponse<String> response = null;
@@ -118,5 +130,15 @@ public class MatchService {
             return true;
         }
         return false;
+    }
+
+
+    public List<SubscriptionCard> getMatchAndSubscriber(){
+        List<Object[]> subscriptionCards = subscriptionRepository.getSubscriptionCards();
+
+
+        return subscriptionCards.stream()
+                .map(subscriptionCardConverter::convert)
+                .collect(Collectors.toList());
     }
 }

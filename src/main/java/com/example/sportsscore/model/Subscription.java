@@ -1,13 +1,14 @@
 package com.example.sportsscore.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import net.bytebuddy.dynamic.loading.InjectionClassLoader;
+import org.springframework.boot.autoconfigure.web.WebProperties;
+
+import javax.persistence.*;
 
 @Entity
 public class Subscription {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int subscriptionId;
 
     @ManyToOne
